@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.0.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript">
+    $(function(){
+
+    })
+    </script>
+    {% block extracss %}{% endblock %}
+    {% block extrajs %}{% endblock %}
+</head>
+<body>
+    <header class="navbar navbar-inverse" role="banner">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <nav class="collapse navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Link</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <div class="pull-right">
+                        {% if username %}
+                        <div class="navbar-right">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li id="fat-menu" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                    <a href="#"  data-toggle="dropdown">
+                                        {{username}}的帐号 <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation">
+                                            <!-- <form action="/logout_view" method="POST">
+                                            <button type="submit" role="menuitem">注销</button>
+                                        </form>
+                                        -->
+                                        <a role="menuitem" tabindex="-1" href="/logout">退出</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <li>
+                        <a class="navbar-link" href="/register/" >注册</a>
+                    </li>
+                    <button class="btn btn-default navbar-left" style="margin-top:8px;" data-toggle="modal" data-target="#userLogin">登录</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="userLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <form action="/login_view/" method="POST">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="myModalLabel">登录</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- 登录框体 -->
+                                        <div class="">
+                                            <label for="username">帐号</label>
+                                            <input type="text" name="username" value="" id="username"></div>
+                                        <div class="">
+                                            <label for="password">密码</label>
+                                            <input type="password" name="password" value="" id="password"></div>
+                                        <!-- <input type="submit" value="login" />
+                                        -->
+                                        <input type="hidden" name="next" value="{{ next|escape }}" />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">登录</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
+            </ul>
+            <div class="dropdown pull-right cy-add">
+                <a class="btn btn-primary" data-toggle="dropdown" href="#">
+                    发布 <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" data-toggle="modal" href="/upload_image_page">上传图片</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">创建专辑</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">写图文</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+{% block content %}{% endblock %}
+{% block footer %}
+<hr>
+<p>Thanks for visiting my site.</p>
+{% endblock %}
+</body>
+</html>

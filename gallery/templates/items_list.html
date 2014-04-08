@@ -1,0 +1,59 @@
+{% extends "gallery_base.html" %}
+
+{% block title %}Item List{% endblock %}
+
+{% load staticfiles %}
+{% block extracss %}
+<style type="text/css">
+    .items-head {
+        background: #ddf;
+    }
+    .items-head h2 {
+        display: inline-block;
+        margin: 0;
+    }
+    .items-head a {
+        float: right;
+        margin-top: 9px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<p>
+    <a href="{% url 'gallery' %}">&laquo; Back to main page</a>
+</p>
+<div class="items-head">
+    <h2>Items</h2>
+    <a href="/add_item" class="btn btn-default pull-right">add item</a>
+</div>
+{% if object_list %}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Sample Thumb</th>
+        <th>Description</th>
+    </tr>
+    {% for item in object_list %}
+    <tr>
+        <td> <i>{{ item.name }}</i>
+        </td>
+        <td>
+            <a href="{{ item.get_absolute_url }}">
+                {% if item.photo_set.count %}
+                <img src="/media/{{ item.photo_set.all.0.image.thumb_url }}">
+                <!-- 取得item第一张图片的url。有个疑问：怎么取到的?-->
+                {% else %}
+            (No photos currently uploaded)
+            {% endif %}
+            </a>
+        </td>
+        <td>{{ item.description }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>There are currently no items to display.</p>
+{% endif %}
+
+{% endblock %}

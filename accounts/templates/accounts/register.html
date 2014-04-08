@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}注册{% endblock %}
+{% load staticfiles %}
+{% block content %}
+<h1>Create an account</h1>
+<form action="/register/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="注册">
+</form>
+{% endblock %}

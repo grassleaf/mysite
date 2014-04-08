@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>add story</title>
+</head>
+<body>
+	<div class="cms-story change-form">
+		<div class="breadcrumbs">
+			<a href="/">首页</a>
+			›
+			<a href="/cms/">Cms</a>
+			› 增加 story
+		</div>
+		<div id="content" class="colM">
+			<h1>增加 story</h1>
+			<div id="content-main">
+				<form enctype="multipart/form-data" action="" method="post" id="story_form">
+					<div>
+						<fieldset class="module aligned ">
+							<div class="form-row field-title">
+								<div>
+									<label class="required" for="id_title">Title:</label>
+									<input class="vTextField" id="id_title" maxlength="100" name="title" type="text"></div>
+							</div>
+							<div class="form-row field-slug">
+								<div>
+									<label class="required" for="id_slug">Slug:</label>
+									<input class="vTextField" id="id_slug" maxlength="50" name="slug" type="text"></div>
+							</div>
+							<div class="form-row field-category">
+								<div>
+									<label class="required" for="id_category">Category:</label>
+									<select id="id_category" name="category">
+										<option value="" selected="selected">---------</option>
+										<option value="1">default</option>
+									</select>
+									<a href="/admin/cms/category/add/" class="add-another" id="add_id_category" onclick="return showAddAnotherPopup(this);">
+										<img src="/static/admin/img/icon_addlink.gif" width="10" height="10" alt="添加另一个"></a>
+								</div>
+							</div>
+							<div class="form-row field-markdown_content">
+								<div>
+									<label class="required" for="id_markdown_content">Markdown content:</label>
+									<textarea class="vLargeTextField" cols="40" id="id_markdown_content" name="markdown_content" rows="10"></textarea>
+								</div>
+							</div>
+							<div class="form-row field-owner">
+								<div>
+									<label class="required" for="id_owner">Owner:</label>
+									<select id="id_owner" name="owner">
+										<option value="" selected="selected">---------</option>
+										<option value="1">michael</option>
+										<option value="2">zzh</option>
+									</select>
+									<a href="/admin/auth/user/add/" class="add-another" id="add_id_owner" onclick="return showAddAnotherPopup(this);">
+										<img src="/static/admin/img/icon_addlink.gif" width="10" height="10" alt="添加另一个"></a>
+								</div>
+							</div>
+						</fieldset>
+						<div class="submit-row">
+							<input type="submit" value="发表" class="default" name="_save"></div>
+						<script type="text/javascript">document.getElementById("id_title").focus();</script>
+						<script type="text/javascript">
+							(function($) {
+							    var field;
+							    field = {
+							        id: '#id_slug',
+							        dependency_ids: [],
+							        dependency_list: [],
+							        maxLength: 50
+							    };
+							    field['dependency_ids'].push('#id_title');
+							    field['dependency_list'].push('title');
+							    $('.empty-form .form-row .field-slug, .empty-form.form-row .field-slug').addClass('prepopulated_field');
+							    $(field.id).data('dependency_list', field['dependency_list'])
+							               .prepopulate(field['dependency_ids'], field.maxLength);
+							})(django.jQuery);
+						</script>
+					</div>
+				</form>
+			</div>
+			<br class="clear"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>add item</title>
+</head>
+	<div class="gallery-item change-form">
+		<h1>增加item</h1>
+		<div id="content-main">
+			<form enctype="multipart/form-data" action="/add_item/" method="POST">
+				<div>
+					<fieldset class="module aligned ">
+						<div class="form-row field-name">
+							<div>
+								<label class="required" for="id_name">Name:</label>
+								<input class="vTextField" id="id_name" maxlength="250" name="name" type="text"></div>
+						</div>
+						<div class="form-row field-description">
+							<div>
+								<label class="required" for="id_description">Description:</label>
+								<textarea class="vLargeTextField" cols="40" id="id_description" name="description" rows="10"></textarea>
+							</div>
+						</div>
+						<div class="form-row field-slug">
+							<div>
+								<label class="required" for="id_slug">Slug:</label>
+								<input class="vTextField" id="id_slug" maxlength="40" name="slug" type="text"></div>
+						</div>
+					</fieldset>
+				</div>
+				<script type="text/javascript">
+						(function($) {
+							$("#photo_set-group .inline-related").stackedFormset({
+								prefix: 'photo_set',
+    							adminStaticPrefix: '/static/admin/',
+    							deleteText: "删除",
+    							addText: "添加另一个 Photo"
+							});
+						})(django.jQuery);
+					</script>
+				<div class="submit-row">
+					<input type="submit" value="保存" class="default" name="_save">
+					<!-- <input type="submit" value="保存并增加另一个" name="_addanother">
+					<input type="submit" value="保存并继续编辑" name="_continue"> --></div>
+				<script type="text/javascript">document.getElementById("id_name").focus();</script>
+				<script type="text/javascript">
+						(function($) {
+    						var field;
+						})(django.jQuery);
+					</script>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

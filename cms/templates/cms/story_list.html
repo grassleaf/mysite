@@ -1,0 +1,21 @@
+{% extends "cms/base.html" %}
+{% block navigation %}
+<div class="breadcrumbs" style="margin-bottom: 20px;">
+	<a href="/">首页</a>
+	›
+	<a href="/cms/">Cms</a>
+	› 文章列表
+</div>
+{% endblock %}
+{% block content %}
+    {% if heading %}
+<h1>{{ heading }}</h1>
+{% endif %}
+<ul id="story-list">
+	{% for story in story_list %}
+	<li>
+		<a href="{{ story.get_absolute_url }}">{{ story.title }}</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}

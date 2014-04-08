@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>add category</title>
+</head>
+<body>
+	<div class="cms-category change-form">
+		<div id="content" class="colM">
+			<h1>增加 category</h1>
+			<div id="content-main">
+				<form enctype="multipart/form-data" action="" method="post" id="category_form">
+					<div>
+						<fieldset class="module aligned ">
+							<div class="form-row field-label">
+								<div>
+									<label for="id_label">Label:</label>
+									<input class="vTextField" id="id_label" maxlength="50" name="label" type="text"></div>
+							</div>
+							<div class="form-row field-slug">
+								<div>
+									<label class="required" for="id_slug">Slug:</label>
+									<input class="vTextField" id="id_slug" maxlength="50" name="slug" type="text"></div>
+							</div>
+						</fieldset>
+						<div class="submit-row">
+							<input type="submit" value="保存" class="default" name="_save"></div>
+						<script type="text/javascript">document.getElementById("id_label").focus();</script>
+						<script type="text/javascript">
+							(function($) {
+    							var field;
+    							field = {
+        							id: '#id_slug',
+        							dependency_ids: [],
+        							dependency_list: [],
+        							maxLength: 50
+    							};
+    							field['dependency_ids'].push('#id_label');
+    							field['dependency_list'].push('label');
+    							$('.empty-form .form-row .field-slug, .empty-form.form-row .field-slug').addClass('prepopulated_field');
+    							$(field.id).data('dependency_list', field['dependency_list'])
+               						.prepopulate(field['dependency_ids'], field.maxLength);
+							})(django.jQuery);
+						</script>
+					</div>
+				</form>
+			</div>
+			<br class="clear"></div>
+	</div>
+</body>
+</html>

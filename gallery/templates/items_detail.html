@@ -1,0 +1,51 @@
+{% extends "gallery_base.html" %}
+
+{% block title %}{{ object.name }}{% endblock %}
+{% block extracss %}
+<style type="text/css">
+    .photos-head {
+        background: #eef;
+    }
+    .photos-head h3 {
+        display: inline-block;
+        margin: 0;
+    }
+    .photos-head a {
+        float: right;
+        margin-top: 1px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<p><a href="{% url 'item_list' %}">&laquo; Back to full listing</a></p>
+
+<h2>{{ object.name }}</h2>
+<p>{{ object.description }}</p>
+
+<div class="photos-head">
+<h3>Photos</h3>
+<a href="/add_photo" class="btn btn-default">add photo</a>
+</div>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Thumbnail</th>
+        <th>Caption</th>
+    </tr>
+    {% for photo in object.photo_set.all %}
+    <tr>
+        <td><i>{{ photo.title }}</i></td>
+        <td>
+            <a href="{{ photo.get_absolute_url }}">
+                <img src="/media/{{ photo.image.thumb_url }}" />
+            </a>
+        </td>
+        <td>{{ photo.caption }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

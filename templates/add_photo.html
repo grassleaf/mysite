@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>add photo</title>
+</head>
+<body>
+	<div class="content">
+		<form action="/add_photo/" method="POST" enctype="multipart/form-data">
+			<div class="inline-group" id="photo_set-group">
+				<h2>Photos</h2>
+				<div class="inline-related dynamic-photo_set" id="photo_set-0">
+					<h3> <b>Photo:</b>
+						&nbsp;
+						<span class="inline_label">#1</span>
+					</h3>
+					<fieldset class="module aligned ">
+						<div class="form-row field-item">
+							<div>
+								<label class="required" for="id_item">Item:</label>
+								<select id="id_item" name="item">
+									<!-- 动态加载所有的item -->
+									<option value="" selected="selected">---------</option>
+									<option value="3">default</option>
+								</select>
+								<!-- <a href="/admin/gallery/item/add/" class="add-another" id="add_id_item" onclick="return showAddAnotherPopup(this);">
+									<img src="/static/admin/img/icon_addlink.gif" width="10" height="10" alt="添加另一个"></a> -->
+							</div>
+						</div>
+						<div class="form-row field-title">
+							<div>
+								<label class="required" for="id_title">Title:</label>
+								<input class="vTextField" id="id_title" maxlength="100" name="title" type="text"></div>
+						</div>
+						<div class="form-row field-image">
+							<div>
+								<label class="required" for="id_image">Image:</label>
+								<input id="id_image" name="image" type="file"></div>
+						</div>
+						<div class="form-row field-caption">
+							<div>
+								<label for="id_caption">Caption:</label>
+								<input class="vTextField" id="id_caption" maxlength="250" name="caption" type="text"></div>
+						</div>
+						<div class="form-row field-slug">
+							<div>
+								<label class="required" for="id_slug">Slug:</label>
+								<input class="vTextField" id="id_slug" maxlength="40" name="slug" type="text"></div>
+						</div>
+					</fieldset>
+					<!-- <div class="add-row">
+						<a href="javascript:void(0)">添加另一个 Photo</a>
+					</div> -->
+					<div class="submit-row">
+						<input type="submit" value="保存" class="default" name="_save"></div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
